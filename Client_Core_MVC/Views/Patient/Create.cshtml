@@ -1,0 +1,333 @@
+﻿@using Client_Core_MVC.Models.JsonViewModel;
+@model Client_Core_MVC.Models.PatientVM
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+
+<form asp-action="Create" asp-controller="Patient" method="post">
+    <div asp-validation-summary="All" class="text-danger">
+
+    </div>
+    <div class="col-12 m-auto d-flex justify-content-between mb-2" style="padding-left:3em; height:40px;">
+        <label class="col-2" asp-for="PatientName">Patient Name<span style="color:red;">*</span></label>
+        <input asp-for="PatientName" class="col-8 form-control" required />
+        <span asp-validation-for="PatientName" class="col-2 text-danger"></span>
+    </div>
+
+    <div class=" row">
+            <label  asp-for="Epilepsy"></label>
+            <select asp-for="Epilepsy" asp-items="Html.GetEnumSelectList<Epilepsy>()" class="form-control"></select>
+            <span asp-validation-for="Epilepsy" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+        <label asp-for="DiseaseId"></label>
+        @Html.DropDownListFor(x => x.DiseaseId, ViewBag.diseaseList as SelectList, "--select--", new { @class = "form-select" })
+        <span asp-validation-for="DiseaseId" class="text-danger"></span>
+    </div>
+
+
+    <!-- Other form elements 
+    <div class="raw ">
+        <label>NCDs</label>
+        <div id="ncdContainer">
+            <select asp-for="NCDID" asp-items="@ViewBag.NCDList" class="form-select" multiple>
+                You can include the "multiple" attribute to enable selecting multiple items
+            </select>
+            <span asp-validation-for="NCDID" class="text-danger"></span>
+        </div>
+        <button type="button" onclick="addNCD()">Add NCD</button>
+        <button type="button" onclick="removeNCD()">Remove NCD</button>
+    </div> -->
+
+    <div class="raw">
+        <label>NCDs</label>
+        <div id="ncdContainer">
+            <select id="NCDSelect" asp-for="NCDID" asp-items="@ViewBag.NCDList" class="form-select" multiple>
+                <option disabled selected>Select multiple items For Select (Ctrl+Mouse Click)...</option>
+            </select>
+            <span asp-validation-for="NCDID" class="text-danger"></span>
+        </div>
+        <button type="button" onclick="addNCD()">Add NCD</button>
+        <button type="button" onclick="removeNCD()">Remove NCD</button>
+    </div>
+
+    <div class="raw">
+        <label>Allergies</label>
+        <div id="allergiesContainer">
+            <select asp-for="allergiesID" asp-items="@ViewBag.AllergiesList" class="form-select" multiple>
+                You can include the "multiple" attribute to enable selecting multiple items
+            </select>
+            <span asp-validation-for="allergiesID" class="text-danger"></span>
+        </div>
+        <button type="button" onclick="addAllergy()">Add Allergy</button>
+        <button type="button" onclick="removeAllergy()">Remove Allergy</button>
+    </div>
+
+
+    <div class="row">
+        <div class="d-flex justify-content-between">
+            <div class="form-group col-4">
+                <label>Allergies</label>
+                <div id="allergiesContainer">
+                    <select asp-for="allergiesID" asp-items="@ViewBag.AllergiesList" class="form-select" multiple>
+                        You can include the "multiple" attribute to enable selecting multiple items
+                    </select>
+                    <span asp-validation-for="allergiesID" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-4 text-center">
+                <br />
+                <br />
+                <br />
+                <button type="button" onclick="addAllergy()">Add</button>
+                <button type="button" onclick="removeAllergy()">Remove</button>
+            </div>
+
+            <div class="form-group col-4 ">
+                <label>Allergies</label>
+                <div id="allergiesContainer">
+                    <select asp-for="allergiesID" asp-items="@ViewBag.AllergiesList" class="form-select" multiple>
+                        You can include the "multiple" attribute to enable selecting multiple items
+                    </select>
+                    <span asp-validation-for="allergiesID" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+
+    <!-- NCDs 
+    <div class="form-group">
+        <label>NCDs</label>
+        <div id="ncdContainer">
+            <label asp-for="NCDID"></label>
+            <select asp-for="NCDID" asp-items="@ViewBag.NCDList" class="form-select" multiple>
+             You can include the "multiple" attribute to enable selecting multiple items
+            </select>
+            <span asp-validation-for="NCDID" class="text-danger"></span>
+        </div>
+        <button type="button" onclick="addNCD()">Add NCD</button>
+        <button type="button" onclick="removeNCD()">Remove NCD</button>
+    </div>
+
+
+    <div class="form-group">
+        <label>Allergies</label>
+        <div id="allergiesContainer">
+            <label asp-for="allergiesID"></label>
+            <select asp-for="allergiesID" asp-items="@ViewBag.AllergiesList" class="form-select" multiple>
+                 You can include the "multiple" attribute to enable selecting multiple items
+            </select>
+            <span asp-validation-for="allergiesID" class="text-danger"></span>
+        </div>
+        <button type="button" onclick="addAllergy()">Add Allergy</button>
+        <button type="button" onclick="removeAllergy()">Remove Allergy</button>
+    </div>
+
+
+     NCDs 
+    <div class="form-group">
+        <label>NCDs</label>
+        <div id="ncdContainer">
+            <label asp-for="NCDID"></label>
+            <select asp-for="NCDID" asp-items="@ViewBag.NCDList" class="form-select">
+                <option value="">--select--</option>
+            </select>
+            <span asp-validation-for="NCDID" class="text-danger"></span>
+        </div>
+        <button type="button" onclick="addNCD()">Add NCD</button>
+        <button type="button" onclick="removeNCD()">Remove NCD</button>
+    </div>
+
+    Allergies 
+    <div class="form-group">
+        <label>Allergies</label>
+        <div id="allergiesContainer">
+                <label asp-for="allergiesID"></label>
+                <select asp-for="allergiesID" asp-items="@ViewBag.AllergiesList" class="form-select">
+                    <option value="">--select--</option>
+                </select>
+                <span asp-validation-for="allergiesID" class="text-danger"></span>
+        </div>
+
+        <button type="button" onclick="addAllergy()">Add Allergy</button>
+        <button type="button" onclick="removeAllergy()">Remove Allergy</button>
+    </div>-->
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-info">SAVE</button>
+    </div>
+    
+</form>
+<script>
+    function addNCD() {
+        var select = document.getElementById("NCDSelect");
+
+        // Example: Add a new option with a value and text
+        var option = document.createElement("option");
+        option.value = "newNCDValue";
+        option.text = "New NCD Option";
+
+        // Append the new option to the select element
+        select.add(option);
+    }
+
+    function removeNCD() {
+        var select = document.getElementById("NCDSelect");
+
+        // Example: Remove the last option
+        if (select.options.length > 1) {
+            select.remove(select.options.length - 1);
+        }
+    }
+</script>
+<!--<script>
+    function addNCD() {
+        var container = document.getElementById("ncdContainer");
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "OtherNCDs";
+        container.appendChild(input);
+    }
+
+    function removeNCD() {
+        var container = document.getElementById("ncdContainer");
+        var inputs = container.getElementsByTagName("input");
+        if (inputs.length > 0) {
+            container.removeChild(inputs[inputs.length - 1]);
+        }
+    }
+
+    function addAllergy() {
+        var container = document.getElementById("allergiesContainer");
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "Allergies";
+        container.appendChild(input);
+    }
+
+    function removeAllergy() {
+        var container = document.getElementById("allergiesContainer");
+        var inputs = container.getElementsByTagName("input");
+        if (inputs.length > 0) {
+            container.removeChild(inputs[inputs.length - 1]);
+        }
+    }
+</script>-->
+
+@*@<form asp-action="Create" asp-controller="Patient" method="post">
+    <div class="form-group">
+        <label asp-for="PatientName"></label>
+        <input asp-for="PatientName" class="form-control" />
+        <span asp-validation-for="PatientName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Epilepsy"></label>
+        <select asp-for="Epilepsy" asp-items="Html.GetEnumSelectList<Epilepsy>()" class="form-control"></select>
+        <span asp-validation-for="Epilepsy" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiseaseId"></label>
+        <select asp-for="DiseaseId" asp-items="@ViewBag.diseaseList" class="form-select">
+            <option value="">--select--</option>
+        </select>
+        <span asp-validation-for="DiseaseId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NCDID"></label>
+        <select asp-for="NCDID" asp-items="@ViewBag.NCDList" class="form-select">
+            <option value="">--select--</option>
+        </select>
+        <span asp-validation-for="NCDID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="allergiesID"></label>
+        <select asp-for="allergiesID" asp-items="@ViewBag.AllergiesList" class="form-select">
+            <option value="">--select--</option>
+        </select>
+        <span asp-validation-for="allergiesID" class="text-danger"></span>
+    </div>
+
+    <!-- Additional form elements for Other NCDs and Allergies -->
+
+    <button type="submit" class="btn btn-primary">SAVE</button>
+</form>
+-------------------------------------------------------------------------------------------deferent--------------------
+ <form asp-action="Create" asp-controller="Patient" method="post">
+    <div class="form-group">
+        <label asp-for="PatientName"></label>
+        <input asp-for="PatientName" class="form-control" />
+        <span asp-validation-for="PatientName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Epilepsy"></label>
+        <select asp-for="Epilepsy" asp-items="Html.GetEnumSelectList<Epilepsy>()" class="form-control"></select>
+        <span asp-validation-for="Epilepsy" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DiseaseId"></label>
+        @Html.DropDownListFor(x=>x.DiseaseId, ViewBag.diseaseList as SelectList,"--sellect--", new{@class="form-select"})
+        <span asp-validation-for="DiseaseId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NCDID"></label>
+        @Html.DropDownListFor(x=>x.NCDID, ViewBag.NCDList as SelectList,"--sellect--", new{@class="form-select"})
+        <span asp-validation-for="NCDID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="allergiesID"></label>
+        @Html.DropDownListFor(x=>x.allergiesID, ViewBag.AllergiesList as SelectList,"--sellect--", new{@class="form-select"})
+        <span asp-validation-for="allergiesID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">SAVE</button>
+</form> *@
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
+
+@*  <div class="form-group">
+        <label asp-for="NCDID"></label>
+        <select asp-for="NCDID" multiple class="form-control">
+            @foreach (var ncd in ViewBag.NCDList)
+            {
+                <option value="@ncd.NCDID">@ncd.NCDName</option>
+            }
+        </select>
+        <span asp-validation-for="NCDID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="allergies"></label>
+        <select asp-for="allergies" multiple class="form-control">
+            @foreach (var allergy in ViewBag.AllergiesList)
+            {
+                <option value="@allergy.allergiesID">@allergy.AllergiesName</option>
+            }
+        </select>
+        <span asp-validation-for="allergies" class="text-danger"></span>
+    </div>
+
+
+     <div class="form-group">
+        <label asp-for="NCDID"></label>
+        <select asp-for="NCDID" asp-items="@(new SelectList(ViewBag.NCDList, "NCDID", "NCDName"))" multiple class="form-control"></select>
+        <span asp-validation-for="NCDID" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="allergiesID"></label>
+        <select asp-for="allergiesID" asp-items="@(new SelectList(ViewBag.AllergiesList, "allergiesID", "AllergiesName"))" multiple class="form-control"></select>
+        <span asp-validation-for="allergiesID" class="text-danger"></span>
+    </div> *@ 

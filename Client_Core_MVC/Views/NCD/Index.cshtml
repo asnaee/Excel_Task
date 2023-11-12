@@ -1,0 +1,29 @@
+﻿@using Client_Core_MVC.Models.JsonViewModel;
+@model List<NCD>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p class="display-4 alert alert-primary text-center">List of NCD</p>
+
+<p class="d-flex justify-content-end">
+    <a class="btn btn-primary" asp-action="Create" asp-controller="NCD">+</a>
+</p>
+<table class="table table-bordered alert alert-success">
+    <tr class="table table-warning">
+        <th>.NCD ID</th>
+        <th>.NCD Name</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.NCDID</td>
+            <td>@item.NCDName</td>
+            <td class="text-center">
+                <a class="btn btn-primary" asp-action="Edit" asp-controller="NCD" asp-route-id="@item.NCDID">Edit</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-controller="NCD" asp-route-id="@item.NCDID">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

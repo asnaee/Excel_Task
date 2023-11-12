@@ -1,0 +1,128 @@
+﻿@using Client_Core_MVC.Models.JsonViewModel;
+@model List<PatientViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p class="display-4 alert alert-primary text-center">Patient Details Information</p>
+<p class="d-flex justify-content-end">
+    <!--<a class="btn btn-warning" asp-action="Create" asp-controller="Patient">+</a>-->
+    <a class="btn btn-primary" asp-action="Dynamic" asp-controller="Patient">Add Patient</a>
+</p>
+<table class="table table-bordered alert alert-success">
+    <tr class="table table-warning">
+        <th>.Patient ID </th>
+        <th>.Patient Name </th>
+        <th>.Disease Name </th>
+        <th>.Epilepsy Name </th>
+        <th>.NCD </th>
+        <th>.Allergies </th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.PatientId</td>
+            <td>@item.PatientName</td>
+            <td>@item.DiseaseName</td>
+            <td>@item.Epilepsy</td>
+            <td>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>NCD Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Nc in item.NCDNames)
+                        {
+                            <tr>
+                                <td>@Nc</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Allergie Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Allergie in item.AllergiesNames)
+                        {
+                            <tr>
+                                <td>@Allergie</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td class="text-center">
+                <a class="btn btn-primary" asp-action="Edit" asp-controller="Patient" asp-route-id="@item.PatientId">Edit</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-controller="Patient" asp-route-id="@item.PatientId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+@* <table class="table table-bordered">
+    <tr>
+        <th>.PatientID </th>
+        <th>.Patient Name </th>
+        <th>.Disease Name </th>
+        <th>.Epilepsy Name </th>
+        <th>.NCD </th>
+        <th>.Allergies </th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.PatientID</td>
+            <td>@item.PatientName</td>
+            <td>@item.DiseaseInformation.DiseaseName</td>
+            <td>@item.Epilepsy</td>
+            <td>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>NCD Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Nc in item.NCDDetails)
+                        {
+                            <tr>
+                                <td>@Nc.NCD.NCDName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Allergie Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Nc in item.AllergiesDetails)
+                        {
+                            <tr>
+                                <td>@Nc.Allergie.AllergiesName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </td>
+            <td class="text-center">
+                <a class="btn btn-primary" asp-action="Edit" asp-controller="NCD" asp-route-id="@item.PatientID">Edit</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-controller="NCD" asp-route-id="@item.PatientID">Delete</a>
+            </td>
+        </tr>
+    }
+</table> *@

@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Client_Core_MVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Client_Core_MVC.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            padding-top: 56px;
+            background-color: #343a40; /* Slight gray background color */
+            color: #f8f9fa;
+        }
+
+        #sidebar {
+            min-width: 200px;
+            max-width: 200px;
+            background: #007bff; /* Slight blue color for the sidebar */
+            color: #ffff00; /* Text color (changed to yellow) */
+            transition: all 0.3s;
+        }
+
+            #sidebar a {
+                padding: 10px;
+                text-decoration: none;
+                font-size: 18px;
+                color: #ffff00; /* Link text color (changed to yellow) */
+                display: block;
+                transition: all 0.3s;
+            }
+
+                #sidebar a:hover {
+                    background: #0056b3; /* Hover background color */
+                    color: #ffff00; /* Hover text color (changed to yellow) */
+                }
+
+        .navbar {
+            background: #e9f0f6; /* Slight blue color for the navbar */
+        }
+
+        .navbar-brand {
+            color: #ffff00; /* Navbar brand color (changed to yellow) */
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #ffff00; /* Navbar toggle icon color (changed to yellow) */
+        }
+
+        .navbar-toggler {
+            border-color: #ffff00; /* Navbar toggle button color (changed to yellow) */
+        }
+
+        .footer {
+            background: #f8f9fa; /* Footer background color */
+            padding: 10px 0;
+            text-align: center;
+            color: #ffff00; /* Footer text color (changed to yellow) */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar bg-black">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Patient" asp-action="Index">Patient</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Allergie" asp-action="Index">Allergies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="NCD" asp-action="Index">NCD</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Disease" asp-action="Index">Disease</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <header class="navbar navbar-expand-lg navbar-light bg-light border-bottom box-shadow mb-3">
+                    <div class="container-fluid text-center">
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" >Excel-Technologies-Ltd</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Page content -->
+                <div class="container">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="border-top footer">
+        <div class="container bg-warning text-black">
+            &copy; 2023 - Excel-Technologies-Ltd- <a class="btn btn-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+
+

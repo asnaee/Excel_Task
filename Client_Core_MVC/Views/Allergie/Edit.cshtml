@@ -1,0 +1,53 @@
+﻿@using Client_Core_MVC.Models.JsonViewModel;
+@model Allergie
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1 class="alert alert-info">Edit Allergies</h1>
+<form asp-action="Edit" asp-controller="Allergie" method="post">
+    <input type="hidden" asp-for="allergiesID" />
+  
+    <div class="form-group">
+        <label for="AllergiesName" class="control-label">Allergies Name:</label>
+        <input type="text" id="AllergiesName" name="AllergiesName" asp-for="AllergiesName" class="form-control" />
+        <span asp-validation-for="AllergiesName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-2 d-flex justify-content-center">
+        <input type="submit" value="Save Changes" class="btn btn-primary" />
+    </div>
+</form>
+
+
+
+
+@* @* @model Allergie
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form asp-action="Edit" asp-controller="Allergie" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="AllergiesID" />
+    <div class="form-group">
+        <label for="AllergiesName" class="control-label">Allergies Name:</label>
+        <input type="text" id="AllergiesName" name="AllergiesName" asp-for="AllergiesName" class="form-control" />
+        <span asp-validation-for="AllergiesName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save Changes" class="btn btn-primary" />
+    </div>
+</form>
+
+<form action="/Allergie/Edit/@Model.AllergiesID" method="post">
+    <div class="form-group">
+        <label for="AllergiesName" class="control-label">Allergies Name:</label>
+        <input type="text" id="AllergiesName" name="AllergiesName" value="@Model.AllergiesName" class="form-control" />
+        <!-- Add validation messages if needed -->
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save Changes" class="btn btn-primary" />
+    </div>
+</form> *@ 

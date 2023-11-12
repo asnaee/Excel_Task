@@ -1,0 +1,18 @@
+﻿@using Client_Core_MVC.Models.JsonViewModel;
+@model DiseaseInformation
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1 class="alert alert-info">Edit Disease</h1>
+<form asp-action="Edit" asp-controller="Disease" method="post">
+    <input type="hidden" asp-for="DiseaseID" />
+    <div class="form-group">
+        <label for="DiseaseName" class="control-label">Allergies Name:</label>
+        <input type="text" id="DiseaseName" name="DiseaseName" asp-for="DiseaseName" class="form-control" />
+        <span asp-validation-for="DiseaseName" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-2 d-flex justify-content-center">
+        <input type="submit" value="Save Changes" class="btn btn-info" />
+    </div>
+</form>
+

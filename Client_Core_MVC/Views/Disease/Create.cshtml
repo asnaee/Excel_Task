@@ -1,0 +1,30 @@
+﻿@using Client_Core_MVC.Models.JsonViewModel;
+@model DiseaseInformation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="alert alert-heading">Add New Disease</h1>
+
+<form asp-action="Create" asp-controller="Disease" method="post">
+    <div class="form-group">
+        <label for="DiseaseName">Disease Name:</label>
+        <input type="text" id="DiseaseName" name="DiseaseName" class="form-control" />
+        <span asp-validation-for="DiseaseName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-2 d-flex justify-content-center">
+        <input type="submit" value="SAVE" class="btn btn-info" />
+    </div>
+</form>
+
+<div class="d-flex justify-content-end">
+    <a class="btn btn-primary" asp-action="Index" asp-controller="Disease">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

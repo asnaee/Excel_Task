@@ -1,0 +1,18 @@
+﻿@using Client_Core_MVC.Models.JsonViewModel;
+@model NCD
+@{
+    ViewData["Title"] = "Edit";
+}
+<h1 class="alert alert-info">Edit New NCD</h1>
+<form asp-action="Edit" asp-controller="NCD" method="post">
+    <input type="hidden" asp-for="NCDID" />
+    <div class="form-group">
+        <label for="NCDName" class="control-label">NCD Name:</label>
+        <input type="text" id="NCDName" name="NCDName" asp-for="NCDName" class="form-control" />
+        <span asp-validation-for="NCDName" class="text-danger"></span>
+    </div>
+    <div class="form-group mt-2 d-flex justify-content-center">
+        <input type="submit" value="Save Changes" class="btn btn-info" />
+    </div>
+</form>
+

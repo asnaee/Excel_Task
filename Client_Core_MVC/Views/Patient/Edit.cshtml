@@ -1,0 +1,59 @@
+﻿@using Client_Core_MVC.Models.JsonViewModel;
+@model Client_Core_MVC.Models.PatientViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center text-primary" style="font-family:'Times New Roman', Times, serif; font-weight:600; font-size: 2em; ">Edit Patient Information</h1>
+<div class="col-10 m-auto" style="border:1px solid blue; padding: 2em; height:110vh">
+
+    <div class="row">
+        <div class="col-12">
+            <form method="post" asp-controller="Patient" asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PatientId" />
+                <div class="col-12 m-auto d-flex justify-content-between mb-2" style="padding-left:3em; height:40px;">
+                    <label class="col-2" asp-for="PatientName">Patient Name<span style="color:red;">*</span></label>
+                    <input class="col-8" asp-for="PatientName" required />
+                    <span asp-validation-for="PatientName" class="col-2 text-danger"></span>
+                </div>
+
+                <div class="col-12 m-auto d-flex justify-content-between mb-2" style="padding-left:3em; height:40px;">
+                    <label class="col-2" asp-for="DiseaseId">Disease Name<span style="color:red;">*</span></label>
+                    <select asp-for="DiseaseId" asp-items="@ViewBag.diseaseList" class="col-8">
+                        <option value=""></option>
+                    </select>
+                    <span asp-validation-for="DiseaseId" class="col-2 text-danger"></span>
+                </div>
+
+                <div class="col-12 m-auto d-flex justify-content-between mb-2" style="padding-left:3em; height:40px;">
+                    <label class="col-2" asp-for="Epilepsy">Epilepsy<span style="color:red;">*</span></label>
+                    <select asp-for="Epilepsy" asp-items="Html.GetEnumSelectList<Epilepsy>()" class="col-8"></select>
+                    <span asp-validation-for="Epilepsy" class="col-2 text-danger"></span>
+                </div>
+
+                <div class="col-12 m-auto d-flex justify-content-between md-2" style="padding-left:3em;height:140px;">
+                    <label class="col-2">NCD</label>
+                    <select asp-for="NCDID" asp-items="@ViewBag.NCDList" class="col-8" multiple>
+                        <option disabled selected>Select multiple items | For Select (Ctrl+Mouse Click)...</option>
+                    </select>
+                    <span asp-validation-for="NCDID" class="col-2 text-danger"></span>
+                </div>
+                <div class="col-12 m-auto d-flex justify-content-between mt-2" style="padding-left:3em; height:240px;">
+                    <label class="col-2">Allergies</label>
+                    <select asp-for="allergiesID" asp-items="@ViewBag.AllergiesList" class="col-8" multiple>
+                        <option disabled selected>Select multiple items | For Select (Ctrl+Mouse Click)...</option>
+                    </select>
+                    <span asp-validation-for="allergiesID" class="col-2 text-danger"></span>
+                </div>
+
+                <div class=" d-flex justify-content-center">
+                    <input type="submit" value="Update" class="fw-bold fs-3 btn btn-primary" style=" margin-top:3rem;" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    // Add your JavaScript functions here, like AddPatientNcds, RemovePatientNcds, AddPatientAllergies, RemovePatientAllergies
+</script>
